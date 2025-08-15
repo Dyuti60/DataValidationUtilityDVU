@@ -1,0 +1,88 @@
+<mat-card>
+  <mat-card-title>Saved Queries</mat-card-title>
+
+  <!-- Search -->
+  <mat-form-field appearance="fill">
+    <mat-label>Search</mat-label>
+    <input matInput [(ngModel)]="searchTerm" (input)="applyFilter()">
+  </mat-form-field>
+
+  <!-- New Query Form -->
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="newName">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input matInput [(ngModel)]="newDescription">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Query</mat-label>
+      <textarea matInput [(ngModel)]="newQuery"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Databases (comma-separated)</mat-label>
+      <input matInput [(ngModel)]="newDbs">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Tags (comma-separated)</mat-label>
+      <input matInput [(ngModel)]="newTags">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="saveQuery()">Save</button>
+  </div>
+
+  <!-- Table -->
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dbs">
+      <th mat-header-cell *matHeaderCellDef>Databases</th>
+      <td mat-cell *matCellDef="let element">{{ element.dbs.join(', ') }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="tags">
+      <th mat-header-cell *matHeaderCellDef>Tags</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-chip-listbox>
+          <mat-chip *ngFor="let tag of element.tags">{{ tag }}</mat-chip>
+        </mat-chip-listbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef>Created</th>
+      <td mat-cell *matCellDef="let element">{{ element.createdAt | date }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" (click)="runQuery(element)">
+          <mat-icon>play_arrow</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteQuery(element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+</mat-card>

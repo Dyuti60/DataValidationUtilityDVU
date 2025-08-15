@@ -1,0 +1,86 @@
+<div class="multi-db-container">
+  <!-- DB 1 -->
+  <mat-card>
+    <mat-card-title>Database 1</mat-card-title>
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Database Type</mat-label>
+        <mat-select [(ngModel)]="connection1.type" name="dbType1" required>
+          <mat-option *ngFor="let db of dbTypes" [value]="db">{{ db }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Host</mat-label>
+        <input matInput [(ngModel)]="connection1.host" name="host1" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Port</mat-label>
+        <input matInput type="number" [(ngModel)]="connection1.port" name="port1">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Username</mat-label>
+        <input matInput [(ngModel)]="connection1.username" name="username1" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" [(ngModel)]="connection1.password" name="password1">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Database Name</mat-label>
+        <input matInput [(ngModel)]="connection1.dbName" name="dbName1">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="testConnection(connection1, 'DB1')">Test DB1</button>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- DB 2 -->
+  <mat-card>
+    <mat-card-title>Database 2</mat-card-title>
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Database Type</mat-label>
+        <mat-select [(ngModel)]="connection2.type" name="dbType2" required>
+          <mat-option *ngFor="let db of dbTypes" [value]="db">{{ db }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Host</mat-label>
+        <input matInput [(ngModel)]="connection2.host" name="host2" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Port</mat-label>
+        <input matInput type="number" [(ngModel)]="connection2.port" name="port2">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Username</mat-label>
+        <input matInput [(ngModel)]="connection2.username" name="username2" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" [(ngModel)]="connection2.password" name="password2">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Database Name</mat-label>
+        <input matInput [(ngModel)]="connection2.dbName" name="dbName2">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="testConnection(connection2, 'DB2')">Test DB2</button>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<!-- Save both -->
+<div class="save-btn">
+  <button mat-raised-button color="accent" (click)="saveConnections()">Save Both Connections</button>
+</div>

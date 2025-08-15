@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <span class="app-title">Data Validation Utility (DVU)</span>
+
+  <span class="spacer"></span>
+
+  <a mat-button routerLink="/dashboard">Dashboard</a>
+  <a mat-button routerLink="/multiDBConnection">Multi-DB</a>
+  <a mat-button routerLink="/logActivity">Logs</a>
+  <!-- <a mat-button routerLink="/adminSettings" *ngIf="auth.isAdmin()">Admin</a> -->
+
+  <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>

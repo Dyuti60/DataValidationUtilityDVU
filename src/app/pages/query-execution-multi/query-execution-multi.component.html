@@ -1,0 +1,63 @@
+<p>query-execution-multi works!</p>
+<div class="multi-query-container">
+  <mat-card>
+    <mat-card-title>Query Execution (Multiple DB)</mat-card-title>
+    <mat-card-content>
+      <!-- Multi-select DB -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Select Databases</mat-label>
+        <mat-select [(ngModel)]="selectedDbs" multiple name="multiDbSelect" required>
+          <mat-option *ngFor="let db of connectedDbs" [value]="db">{{ db }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- SQL Input -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>SQL Query</mat-label>
+        <textarea
+          matInput
+          rows="6"
+          placeholder="Enter SQL to run on all selected DBs..."
+          [(ngModel)]="sqlQuery"
+          name="sqlQueryMulti"
+        ></textarea>
+      </mat-form-field>
+
+      <!-- Run Button -->
+      <button mat-raised-button color="primary" (click)="runQueryOnMultiple()" [disabled]="loading">
+        {{ loading ? 'Running...' : 'Run Query on Selected DBs' }}
+      </button>
+
+      <!-- Results -->
+      <div class="results-container" *ngIf="queryResults.length">
+        <div *ngFor="let result of queryResults" class="result-card" [ngClass]="{'error': result.error}">
+          <mat-card>
+            <mat-card-title>
+              {{ result.dbName }}
+              <span *ngIf="result.error" class="error-text"> - Error</span>
+            </mat-card-title>
+            <mat-card-content>
+              <p>Execution Time: {{ result.executionTime | number:'1.0-2' }} ms</p>
+
+              <div *ngIf="result.error" class="error-text">
+                {{ result.error }}
+              </div>
+
+              <div *ngIf="!result.error && result.rows.length">
+                <table mat-table [dataSource]="result.rows" class="mat-elevation-z8">
+                  <ng-container *ngFor="let col of result.columns; let i = index" [matColumnDef]="col">
+                    <th mat-header-cell *matHeaderCellDef>{{ col }}</th>
+                    <td mat-cell *matCellDef="let row">{{ row[i] }}</td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="result.columns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: result?.columns || []"></tr>
+                </table>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

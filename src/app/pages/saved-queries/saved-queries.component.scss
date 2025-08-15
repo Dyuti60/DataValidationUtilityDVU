@@ -1,0 +1,18 @@
+.saved-queries-container {
+  padding: 20px;
+}
+
+.add-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+mat-chip {
+  background-color: #e0e0e0;
+}

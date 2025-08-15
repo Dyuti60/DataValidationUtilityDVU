@@ -1,0 +1,17 @@
+.sidenav-container {
+  height: 100vh;
+}
+
+.dashboard-content {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+}
+
+.dashboard-card {
+  flex: 1;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

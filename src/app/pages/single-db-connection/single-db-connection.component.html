@@ -1,0 +1,52 @@
+<div class="connection-container">
+  <mat-card>
+    <mat-card-title>Single Database Connection</mat-card-title>
+    <mat-card-content>
+      <form>
+        <!-- DB Type -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Database Type</mat-label>
+          <mat-select [(ngModel)]="connection.type" name="dbType" required>
+            <mat-option *ngFor="let db of dbTypes" [value]="db">{{ db }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Host -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Host</mat-label>
+          <input matInput [(ngModel)]="connection.host" name="host" required>
+        </mat-form-field>
+
+        <!-- Port -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Port</mat-label>
+          <input matInput type="number" [(ngModel)]="connection.port" name="port">
+        </mat-form-field>
+
+        <!-- Username -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput [(ngModel)]="connection.username" name="username" required>
+        </mat-form-field>
+
+        <!-- Password -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" [(ngModel)]="connection.password" name="password">
+        </mat-form-field>
+
+        <!-- DB Name -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Database Name</mat-label>
+          <input matInput [(ngModel)]="connection.dbName" name="dbName">
+        </mat-form-field>
+
+        <!-- Action Buttons -->
+        <div class="button-row">
+          <button mat-raised-button color="primary" (click)="testConnection()">Test Connection</button>
+          <button mat-raised-button color="accent" (click)="saveConnection()">Save</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

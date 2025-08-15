@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-title>Result Comparison</mat-card-title>
+  <mat-card-content>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!-- Column Name -->
+      <ng-container matColumnDef="column">
+        <th mat-header-cell *matHeaderCellDef> Column </th>
+        <td mat-cell *matCellDef="let row"> {{row.column}} </td>
+      </ng-container>
+
+      <!-- DB1 Value -->
+      <ng-container matColumnDef="db1Value">
+        <th mat-header-cell *matHeaderCellDef> DB1 Value </th>
+        <td mat-cell *matCellDef="let row" [ngClass]="applyHighlight(row)">
+          {{row.db1Value}}
+        </td>
+      </ng-container>
+
+      <!-- DB2 Value -->
+      <ng-container matColumnDef="db2Value">
+        <th mat-header-cell *matHeaderCellDef> DB2 Value </th>
+        <td mat-cell *matCellDef="let row" [ngClass]="applyHighlight(row)">
+          {{row.db2Value}}
+        </td>
+      </ng-container>
+
+      <!-- Header & Row -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </mat-card-content>
+</mat-card>

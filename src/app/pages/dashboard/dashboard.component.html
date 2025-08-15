@@ -1,0 +1,51 @@
+<mat-sidenav-container class="sidenav-container">
+  <!-- Side Menu -->
+  <mat-sidenav mode="side" opened>
+    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/single-db">
+        <mat-icon>storage</mat-icon>
+        <span>Single DB Connection</span>
+      </a>
+      <a mat-list-item routerLink="/multi-db">
+        <mat-icon>dns</mat-icon>
+        <span>Multiple DB Connection</span>
+      </a>
+      <a mat-list-item routerLink="/recent-queries">
+        <mat-icon>history</mat-icon>
+        <span>Recent Queries</span>
+      </a>
+      <a mat-list-item routerLink="/settings">
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Main Content -->
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <span>Welcome, {{ username }}</span>
+      <span class="spacer"></span>
+      <button mat-icon-button>
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div class="dashboard-content">
+      <mat-card class="dashboard-card">
+        <mat-card-title>Active Database Connections</mat-card-title>
+        <mat-card-content>
+          <p>No active connections</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="dashboard-card">
+        <mat-card-title>Recent Queries</mat-card-title>
+        <mat-card-content>
+          <p>No queries run yet</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
